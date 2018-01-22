@@ -35,27 +35,7 @@ class GameRemoteDataManager: GameRemoteDataManagerInputProtocol {
                 }
                 
                 self.remoteRequestHandler?.didRetrieveGames(games, nextPage: next)
-                
-//                self.clearDb = self.url == Endpoints.topGames.url
-//                self.url = parsedJson["_links"]["next"].string as! String
-//                self.remoteRequestHandler?.didRetrieveGames(games, resetDataBase: self.clearDb)
             }
         }
-        
-        /*
-        Alamofire.request(url).responseJSON { (response) in
-            
-            if let json = response.result.value {
-                NSLog("\(json)")
-                let games:[GameEntity] = []
-                self.remoteRequestHandler?.didRetrieveGames(games)
-            }
-            
-        }
-        */
-        
-        //Callback
-        
     }
-    
 }
