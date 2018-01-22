@@ -19,7 +19,6 @@ protocol GameRemoteDataManagerInputProtocol: class {
 class GameRemoteDataManager: GameRemoteDataManagerInputProtocol {
     
     var remoteRequestHandler: GameRemoteDataManagerOutputProtocol?
-    //var clearDb:Bool!
     
     func retrieveGameList(url: String) {
         
