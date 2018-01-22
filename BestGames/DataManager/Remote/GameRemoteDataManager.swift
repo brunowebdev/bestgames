@@ -23,8 +23,6 @@ class GameRemoteDataManager: GameRemoteDataManagerInputProtocol {
     
     func retrieveGameList(url: String) {
         
-        NSLog(url)
-        
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Client-ID": "i956f46goi35c3xc054c948shm3snl"]).responseJSON { (response) in
             
             if let json = response.result.value {
