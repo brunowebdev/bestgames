@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 import PKHUD
 import Reachability
 
@@ -25,6 +26,18 @@ class GameListCollectionViewController: UICollectionViewController, GameListColl
     let reachability = Reachability()!
     var reachabilityStartChecked:Bool = false
     
+    func registerRefresher(){
+        self.refresher = UIRefreshControl()
+        self.refresher.tintColor = UIColor.blue
+        self.refresher.addTarget(self, action: #selector(self.updateGames), for: .valueChanged)
+        
+        collectionView?.refreshControl = self.refresher
+    }
+    
+    func unregisterRefresher(){
+        collectionView?.refreshControl = nil
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(connectionChangedStatus(note:)), name: .reachabilityChanged, object: reachability)
         do{
@@ -41,12 +54,15 @@ class GameListCollectionViewController: UICollectionViewController, GameListColl
             switch reachability.connection {
             case .wifi:
                 HUD.flash(.label("Conexão restaurada!"), delay: 2.0) { _ in
+                    self.registerRefresher()
                 }
             case .cellular:
                 HUD.flash(.label("Conexão restaurada!"), delay: 2.0) { _ in
+                    self.registerRefresher()
                 }
             case .none:
                 HUD.flash(.label("Conexão indisponível!"), delay: 2.0) { _ in
+                    self.unregisterRefresher()
                 }
             }
         }else{
@@ -58,17 +74,10 @@ class GameListCollectionViewController: UICollectionViewController, GameListColl
         super.viewDidLoad()
         
         HUD.show(.progress)
-        self.presenter.updateView()
-        
-        refresher = UIRefreshControl()
-        refresher.tintColor = UIColor.blue
-        refresher.addTarget(self, action: #selector(self.updateGames), for: .valueChanged)
-        
-        if #available(iOS 10.0, *) {
-            collectionView!.refreshControl = refresher
-        } else {
-            collectionView?.addSubview(refresher)
+        if (NetworkReachabilityManager()?.isReachable)! {
+            self.registerRefresher()
         }
+        self.presenter.viewDidLoad()
     }
     
     @objc func updateGames(){
@@ -80,7 +89,9 @@ class GameListCollectionViewController: UICollectionViewController, GameListColl
         self.games = games
         self.loadingMoreData = false
         self.collectionView?.reloadData()
-        refresher.endRefreshing()
+        if (NetworkReachabilityManager()?.isReachable)! {
+            refresher.endRefreshing()
+        }
         HUD.hide()
     }
     

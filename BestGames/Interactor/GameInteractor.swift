@@ -16,6 +16,7 @@ protocol GameInteractorInputProtocol:class {
     var gameRemoteDataManager: GameRemoteDataManagerInputProtocol? { get set }
     
     func fetchGames()
+    func resetAndFetchGameList()
     func updateGames()
 }
 
@@ -69,6 +70,7 @@ class GameInteractor: GameInteractorInputProtocol {
         }
     }
     
+    
     func fetchGames() {
         if (NetworkReachabilityManager()?.isReachable)! {
             self.readEndpointParamFromDataBase()
@@ -86,6 +88,18 @@ class GameInteractor: GameInteractorInputProtocol {
             self.readEndpointParamFromDataBase()
             gameRemoteDataManager?.retrieveGameList(url: self.urlEndpointGameList)
         } 
+    }
+    
+    func resetAndFetchGameList() {
+        if (NetworkReachabilityManager()?.isReachable)! {
+            endpointParamLocalDataManager?.resetEndpointParamData()
+            gameLocalDataManager?.resetGameData()
+            
+            self.readEndpointParamFromDataBase()
+            gameRemoteDataManager?.retrieveGameList(url: self.urlEndpointGameList)
+        }else{
+            self.readGameListFromDataBase()
+        }
     }
 }
 

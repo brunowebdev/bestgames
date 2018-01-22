@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol GameListPresenterProtocol: class {
     var view:GameListCollectionViewProtocol! { get set }
     var wireframe:GameListWireframeProtocol! { get set }
     var interactor: GameInteractorInputProtocol! { get set }
     
+    func viewDidLoad()
     func updateView()
     func updateGames()
     
@@ -29,6 +31,10 @@ class GameListPresenter: GameListPresenterProtocol {
     weak var view: GameListCollectionViewProtocol!
     var interactor:GameInteractorInputProtocol!
     var wireframe: GameListWireframeProtocol!
+    
+    func viewDidLoad() {
+        self.interactor.resetAndFetchGameList()
+    }
     
     func updateView() {
         self.interactor.fetchGames()
