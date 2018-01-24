@@ -54,6 +54,8 @@ extension GameListPresenter: GameInteractorOutputProtocol {
     func gamesFetched(games: [GameEntity]) {
         if games.count > 0 {
             self.view.showGameListData(games: games)
+        }else{
+            self.view.showGameListData(games: [])
         }
     }
     
