@@ -60,7 +60,7 @@ extension GameListPresenter: GameInteractorOutputProtocol {
     }
     
     func didReceivedError() {
-        NSLog("Error!")
+        self.view.gameListError()
     }
 }
 

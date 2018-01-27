@@ -105,7 +105,7 @@ class GameInteractor: GameInteractorInputProtocol {
 
 extension GameInteractor: GameRemoteDataManagerOutputProtocol {
     func onError() {
-        NSLog("Error")
+        self.presenter?.didReceivedError()
     }
     
     func didRetrieveGames(_ games: [GameEntity], nextPage: String) {

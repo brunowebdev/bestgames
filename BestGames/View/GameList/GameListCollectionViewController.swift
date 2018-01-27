@@ -13,6 +13,7 @@ import Reachability
 
 protocol GameListCollectionViewProtocol: class {
     func showGameListData(games: [GameEntity])
+    func gameListError()
 }
 
 class GameListCollectionViewController: UICollectionViewController, GameListCollectionViewProtocol {
@@ -93,6 +94,13 @@ class GameListCollectionViewController: UICollectionViewController, GameListColl
             refresher.endRefreshing()
         }
         HUD.hide()
+    }
+    
+    func gameListError(){
+        HUD.hide()
+        HUD.flash(.label("Ooops!\nO download dos jogos falhou! :("), delay: 2.0) { _ in
+            self.registerRefresher()
+        }
     }
     
     // MARK: UICollectionViewDataSource

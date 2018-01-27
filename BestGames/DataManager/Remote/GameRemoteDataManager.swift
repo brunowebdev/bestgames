@@ -22,18 +22,22 @@ class GameRemoteDataManager: GameRemoteDataManagerInputProtocol {
     
     func retrieveGameList(url: String) {
         
-        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Client-ID": "i956f46goi35c3xc054c948shm3snl"]).responseJSON { (response) in
+        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Client-ID": API.ClientID]).responseJSON { (response) in
             
-            if let json = response.result.value {
-                let parsedJson = JSON(json)
-                let next = parsedJson["_links"]["next"].string!
-                var games:[GameEntity] = []
-                
-                for (index,subJson):(String, JSON) in JSON(parsedJson["top"]) {
-                    games.append(GameEntity(id: subJson["game"]["_id"].int!, name: subJson["game"]["name"].string!, channels: subJson["channels"].int!, viewers: subJson["viewers"].int!, thumbnail: subJson["game"]["box"]["large"].string!))
+            if response.result.isFailure {
+                self.remoteRequestHandler?.onError()
+            }else{
+                if let json = response.result.value {
+                    let parsedJson = JSON(json)
+                    let next = parsedJson["_links"]["next"].string!
+                    var games:[GameEntity] = []
+                    
+                    for (index,subJson):(String, JSON) in JSON(parsedJson["top"]) {
+                        games.append(GameEntity(id: subJson["game"]["_id"].int!, name: subJson["game"]["name"].string!, channels: subJson["channels"].int!, viewers: subJson["viewers"].int!, thumbnail: subJson["game"]["box"]["large"].string!))
+                    }
+                    
+                    self.remoteRequestHandler?.didRetrieveGames(games, nextPage: next)
                 }
-                
-                self.remoteRequestHandler?.didRetrieveGames(games, nextPage: next)
             }
         }
     }

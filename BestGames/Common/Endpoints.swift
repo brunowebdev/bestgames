@@ -10,6 +10,7 @@ import Foundation
 
 struct API {
     static let baseUrl = "https://api.twitch.tv/kraken"
+    static let ClientID = "i956f46goi35c3xc054c948shm3snl"
 }
 
 protocol Endpoint {
