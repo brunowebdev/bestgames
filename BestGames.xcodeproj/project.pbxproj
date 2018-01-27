@@ -21,6 +21,7 @@
 		392FF448201190F800FC9E9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 392FF446201190F800FC9E9B /* LaunchScreen.storyboard */; };
 		392FF453201190F800FC9E9B /* BestGamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392FF452201190F800FC9E9B /* BestGamesTests.swift */; };
 		392FF45E201190F800FC9E9B /* BestGamesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 392FF45D201190F800FC9E9B /* BestGamesUITests.swift */; };
+		396130A4201D3B2100B098BA /* NetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 396130A3201D3B2100B098BA /* NetworkingTests.swift */; };
 		39CA160320142C8A00014667 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA160220142C8A00014667 /* CoreDataStore.swift */; };
 		39CA160720142D9700014667 /* GameLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA160620142D9700014667 /* GameLocalDataManager.swift */; };
 		39CA160920142E6B00014667 /* PersistenceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA160820142E6B00014667 /* PersistenceError.swift */; };
@@ -76,6 +77,7 @@
 		392FF459201190F800FC9E9B /* BestGamesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BestGamesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		392FF45D201190F800FC9E9B /* BestGamesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestGamesUITests.swift; sourceTree = "<group>"; };
 		392FF45F201190F800FC9E9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		396130A3201D3B2100B098BA /* NetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingTests.swift; sourceTree = "<group>"; };
 		39CA160220142C8A00014667 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		39CA160620142D9700014667 /* GameLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLocalDataManager.swift; sourceTree = "<group>"; };
 		39CA160820142E6B00014667 /* PersistenceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceError.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 			children = (
 				392FF452201190F800FC9E9B /* BestGamesTests.swift */,
 				392FF454201190F800FC9E9B /* Info.plist */,
+				396130A3201D3B2100B098BA /* NetworkingTests.swift */,
 			);
 			path = BestGamesTests;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				392FF453201190F800FC9E9B /* BestGamesTests.swift in Sources */,
+				396130A4201D3B2100B098BA /* NetworkingTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

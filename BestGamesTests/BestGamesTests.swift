@@ -11,9 +11,8 @@ import XCTest
 
 class BestGamesTests: XCTestCase {
     
-    func gameEntityExample() {
+    func testGameEntityTest() {
         let entity = GameEntity(id: 1, name: "ola mundo", channels: 123, viewers: 564, thumbnail: "url")
         XCTAssertEqual(entity.id, 1)
     }
-    
 }
